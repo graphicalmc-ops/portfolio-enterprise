@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maria Camila Suarez — Case Studies (Light)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F5F8;
+    --surface: #FFFFFF;
+    --surface-2: #EEEEF3;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.13);
+    --accent: #5B3FE0;
+    --accent-dim: rgba(91,63,224,0.10);
+    --accent-dim2: rgba(91,63,224,0.05);
+    --text-primary: #0E0E18;
+    --text-secondary: #52526A;
+    --text-muted: #ABABBC;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --sidebar-w: 240px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .sidebar-logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .sidebar-section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .sidebar-section-label:first-of-type { margin-top: 0; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    margin-left: -10px;
+    margin-bottom: 2px;
+  }
+
+  .nav-item:hover { color: var(--text-primary); background: var(--accent-dim2); }
+  .nav-item.active { color: var(--text-primary); border-left-color: var(--accent); background: var(--accent-dim); }
+
+  .nav-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .nav-item.active .nav-dot { opacity: 1; background: var(--accent); }
+
+  .sidebar-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 0.4rem;
+    margin-right: 4px;
+  }
+  .tag-enterprise { background: rgba(123,97,255,0.15); color: #A892FF; }
+  .tag-nda { background: rgba(180,130,40,0.10); color: #8A6010; border: 1px solid rgba(180,130,40,0.22); }
+  .tag-experimental { background: rgba(15,110,80,0.08); color: #0A6E50; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 4rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(91,63,224,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-name {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .hero-name span { color: var(--accent); font-weight: 500; }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 580px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-last { border-bottom: none; padding-bottom: 6rem; }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-number {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding-top: 6px;
+    min-width: 24px;
+  }
+
+  .project-title-block { flex: 1; }
+
+  .project-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 620px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .meta-value { font-size: 13px; color: var(--text-secondary); }
+
+  /* ── CONTENT BLOCKS ── */
+  .content-block { margin-bottom: 3rem; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .block-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .block-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .block-body {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.75;
+  }
+
+  /* ── GRID CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 1.25rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.15s;
+  }
+
+  .card:hover { border-color: var(--border-strong); }
+
+  .card-icon {
+    font-size: 22px;
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1.25rem;
+  }
+
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .stat-value span {
+    font-size: 16px;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .stat-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── TIMELINE / PROCESS ── */
+  .process-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 1.25rem;
+    position: relative;
+  }
+
+  .process-list::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 28px;
+    bottom: 28px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .process-item {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  .process-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .process-content { padding-top: 4px; }
+
+  .process-content strong {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .process-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── IMAGE PLACEHOLDERS ── */
+  .image-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-top: 1.25rem;
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .image-placeholder {
+    background: var(--surface-2);
+    border: 1.5px dashed var(--border-strong);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    gap: 8px;
+    margin-top: 1.25rem;
+    min-height: 220px;
+  }
+
+  .image-placeholder-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .image-placeholder-icon {
+    font-size: 32px;
+    opacity: 0.25;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 1.25rem;
+  }
+
+  /* ── SCORE VISUAL ── */
+  .score-block {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    margin-top: 1.25rem;
+    max-width: 480px;
+  }
+
+  .score-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .score-number {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .score-max {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .score-detail .score-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .score-detail p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── FINDING PILLS ── */
+  .finding-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+
+  .finding-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .finding-marker {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .finding-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .finding-text strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* ── NDA SECTION ── */
+  .nda-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(180,130,40,0.07);
+    border: 1px solid rgba(180,130,40,0.22);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 13px;
+    color: #8A6010;
+  }
+
+  .nda-banner-icon { font-size: 16px; opacity: 0.8; }
+
+  /* ── KOVA SECTION ── */
+  .kova-embed {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 1.25rem;
+    background: var(--surface);
+  }
+
+  .kova-embed iframe {
+    width: 100%;
+    height: 560px;
+    border: none;
+    display: block;
+  }
+
+  .kova-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: rgba(15,110,80,0.08);
+    color: #0A6E50;
+    border: 1px solid rgba(15,110,80,0.18);
+    margin-right: 6px;
+  }
+
+  /* ── IMPACT RESULTS ── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1.25rem;
+  }
+
+  .result-cell {
+    background: var(--surface);
+    padding: 1.5rem;
+  }
+
+  .result-category {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .result-item:last-child { margin-bottom: 0; }
+
+  .result-value {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .result-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0 2.5rem;
+  }
+
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-divider-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  /* ── QUOTE ── */
+  .insight-quote {
+    border-left: 2px solid var(--accent);
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0;
+    background: var(--accent-dim2);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .insight-quote p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    :root { --sidebar-w: 0px; }
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .section { padding: 2.5rem 1.5rem; }
+    .hero { padding: 3rem 1.5rem; }
+    .results-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">MCS · Portfolio</div>
+
+  <div class="sidebar-section-label">Case Study 01</div>
+  <a href="#pm360-overview" class="nav-item active">
+    <span class="nav-dot"></span>PM360 Overview
+  </a>
+  <a href="#pm360-discovery" class="nav-item">
+    <span class="nav-dot"></span>Discovery
+  </a>
+  <a href="#pm360-userflows" class="nav-item">
+    <span class="nav-dot"></span>User flows
+  </a>
+  <a href="#pm360-testing" class="nav-item">
+    <span class="nav-dot"></span>Usability testing
+  </a>
+  <a href="#pm360-designs" class="nav-item">
+    <span class="nav-dot"></span>Final designs
+  </a>
+
+  <div class="sidebar-section-label">Case Study 02</div>
+  <a href="#partnerhub-overview" class="nav-item">
+    <span class="nav-dot"></span>PartnerHub Overview
+  </a>
+  <a href="#partnerhub-discovery" class="nav-item">
+    <span class="nav-dot"></span>Research & findings
+  </a>
+  <a href="#partnerhub-solution" class="nav-item">
+    <span class="nav-dot"></span>Solution design
+  </a>
+  <a href="#partnerhub-results" class="nav-item">
+    <span class="nav-dot"></span>Results
+  </a>
+
+  <div class="sidebar-section-label">Case Study 03</div>
+  <a href="#kova" class="nav-item">
+    <span class="nav-dot"></span>KOVA Dashboard
+  </a>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Senior Product Designer · B2B Enterprise · SaaS</p>
+    <h1 class="hero-name">Complex systems,<br><span>clear experiences.</span></h1>
+    <p class="hero-sub">Three case studies spanning admin portals, partner management platforms, and AI-driven adaptive experiences — each showing end-to-end product design from discovery to launch.</p>
+    <div class="hero-tags">
+      <span class="pill">Admin portals</span>
+      <span class="pill">SaaS platforms</span>
+      <span class="pill">UX research</span>
+      <span class="pill">Design systems</span>
+      <span class="pill">Usability testing</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDY 01 — PM360
+  ══════════════════════════════════════════════ -->
+
+  <section class="section" id="pm360-overview">
+    <div class="project-header">
+      <div class="project-number">01</div>
+      <div class="project-title-block">
+        <div class="project-label">Enterprise Admin Portal · EasyPark Group</div>
+        <h2 class="project-title">PM360: ParkMobile<br>Admin Portal</h2>
+        <p class="project-subtitle">Migrating and redesigning the internal administration tool for ParkMobile (EasyPark Group) — a platform used by operations teams to manage parking slots, partners, pricing, locations, inventory, and reporting at scale.</p>
+        <div class="meta-row">
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Senior Product Designer</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Team</span>
+            <span class="meta-value">PM · Tech Lead · Devs · QA · Internal users</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Admin portal · Desktop SaaS</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Company</span>
+            <span class="meta-value">EasyPark Group (ParkMobile)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What is PM360 -->
+    <div class="content-block">
+      <div class="block-label">About the product</div>
+      <div class="block-title">An administrative backbone for urban parking at scale</div>
+      <p class="block-body">PM360 is the internal admin portal used by EasyPark Group's operations and partner teams to manage the full lifecycle of digital parking. Behind the consumer-facing ParkMobile app that millions of users rely on to pay for parking, there is a complex set of administrative workflows that PM360 enables.</p>
+    </div>
+
+    <!-- What admins actually do -->
+    <div class="content-block">
+      <div class="block-label">Admin capabilities</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🅿️</div>
+          <div class="card-title">Parking slot management</div>
+          <div class="card-body">Create, configure, and activate parking slots. Define capacity, rules, time restrictions, and enforcement parameters per location.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <div class="card-title">Partner & coordinator setup</div>
+          <div class="card-body">Register and manage partners, coordinators, and suppliers. Control user roles, access levels, and operational relationships across the network.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">💲</div>
+          <div class="card-title">Pricing configuration</div>
+          <div class="card-body">Set dynamic and static pricing models per zone, time slot, or partner type. Supports complex rate structures across multiple markets.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📍</div>
+          <div class="card-title">Location & inventory</div>
+          <div class="card-body">Map parking zones, manage geo-data, track inventory status, and coordinate availability across cities and operational regions.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <div class="card-title">Reports & analytics</div>
+          <div class="card-body">Generate and download operational reports. Track usage, revenue, partner performance, and compliance data across the entire network.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <div class="card-title">Supplier management</div>
+          <div class="card-body">Onboard and configure suppliers with their associated terms, document handling, and operational parameters across markets.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business & User Goals -->
+    <div class="content-block">
+      <div class="block-label">Goals</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="card" style="border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;">
+          <div style="font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem;">BUSINESS GOAL</div>
+          <p class="card-body">Modernize administrative processes through a revamped admin portal. Optimize task management, data visualization, and overall UX to boost productivity and minimize user friction for internal teams.</p>
+        </div>
+        <div class="card" style="border-left: 2px solid #0A6E50; border-radius: 0 8px 8px 0;">
+          <div style="font-family: var(--mono); font-size: 10px; color: #0A6E50; letter-spacing: 0.1em; margin-bottom: 0.75rem;">USER GOAL</div>
+          <p class="card-body">Effortlessly navigate and use the portal for day-to-day administrative duties. An intuitive interface with streamlined workflows that lets users accomplish tasks efficiently without usability barriers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mockup image -->
+    <div class="content-block">
+      <div class="block-label">Product overview</div>
+      <div class="image-placeholder" id="img-mockup">
+        <div class="image-placeholder-icon">🖥</div>
+        <div class="image-placeholder-label">PM360 — Entry mockup / product overview</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Replace src in &lt;img&gt; below this placeholder with your mockup image URL</div>
+      </div>
+      <!-- Uncomment and add your image URL:
+      <div class="image-frame">
+        <img src="YOUR_MOCKUP_URL_HERE" alt="PM360 admin portal mockup" />
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- PM360 DISCOVERY -->
+  <section class="section" id="pm360-discovery">
+    <div class="block-label">Discovery</div>
+    <div class="block-title">Understanding the system before redesigning it</div>
+    <p class="block-body" style="margin-bottom: 2rem;">The project required a rigorous discovery phase: understanding an existing tool being deprecated, aligning with multiple stakeholders, and documenting every critical flow before a single wireframe was drawn.</p>
+
+    <div class="content-block">
+      <div class="block-label">Stakeholder interviews</div>
+      <p class="block-body">Conducted in-depth discussions with project sponsors, product managers, developers, and end-users — the internal EasyPark operations teams who relied on the legacy portal daily. The goal was to surface objectives, pain points, and expectations that wouldn't appear in a requirements document.</p>
+      <div class="finding-list" style="margin-top: 1.25rem;">
+        <div class="finding-item">
+          <span class="finding-marker">finding</span>
+          <span class="finding-text"><strong>High cognitive load on legacy UI:</strong> Admins had internalized workarounds for broken or counterintuitive flows, masking the real UX debt in the system.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">finding</span>
+          <span class="finding-text"><strong>Feature overlap and redundancy:</strong> Multiple entry points for the same action existed in different modules, causing confusion about the "right" path for each task.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">finding</span>
+          <span class="finding-text"><strong>Data visibility gaps:</strong> Teams could complete transactions but had limited visibility into status, history, or downstream impact — making error recovery difficult.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Feature analysis — legacy tool</div>
+      <p class="block-body">Conducted a thorough evaluation of the existing tool's features to identify what was critical to migrate, what could be improved, and what should be removed entirely. This prevented carrying forward technical debt disguised as features.</p>
+      <div class="image-placeholder">
+        <div class="image-placeholder-icon">📋</div>
+        <div class="image-placeholder-label">Previous admin tool — legacy UI screenshot</div>
+      </div>
+      <!-- Uncomment and add your image:
+      <div class="image-frame" style="margin-top: 1.25rem;">
+        <img src="YOUR_BEFORE_IMAGE_URL" alt="Previous admin tool UI" />
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- PM360 USER FLOWS -->
+  <section class="section" id="pm360-userflows">
+    <div class="block-label">User flows</div>
+    <div class="block-title">Mapping the new connections between entities</div>
+    <p class="block-body" style="margin-bottom: 2rem;">After analyzing each feature in scope, new user flows were developed to understand the revised relationships between system entities. Five properties made this work essential to the project's success:</p>
+
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">1</div>
+        <div class="process-content">
+          <strong>Understanding user behavior</strong>
+          <p>Mapping the sequence of actions, decision points, and potential bottlenecks before touching the UI ensured the redesign addressed real behavior, not assumed behavior.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <div class="process-content">
+          <strong>Identifying improvement opportunities</strong>
+          <p>Visualizing the full flow surface where complex processes could be simplified, steps reduced, or navigation consolidated — especially in high-frequency admin tasks.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <div class="process-content">
+          <strong>Validating design decisions</strong>
+          <p>Flows served as a validation artifact: before building screens, we could assess whether proposed designs actually supported the user's task goals at each step.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">4</div>
+        <div class="process-content">
+          <strong>Communicating design intent</strong>
+          <p>User flows provided a shared language for design, development, and product — reducing ambiguity in handoff and alignment sessions with stakeholders.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">5</div>
+        <div class="process-content">
+          <strong>Enabling iterative design</strong>
+          <p>The flows became a living framework — updated as usability testing surfaced new findings, ensuring the design evolved with real evidence rather than assumption.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 flow images -->
+    <div class="image-grid" style="margin-top: 2rem;">
+      <div class="image-placeholder" style="min-height: 180px;">
+        <div class="image-placeholder-icon">🔀</div>
+        <div class="image-placeholder-label">User flow 1</div>
+      </div>
+      <div class="image-placeholder" style="min-height: 180px;">
+        <div class="image-placeholder-icon">🔀</div>
+        <div class="image-placeholder-label">User flow 2</div>
+      </div>
+      <div class="image-placeholder" style="min-height: 180px;">
+        <div class="image-placeholder-icon">🔀</div>
+        <div class="image-placeholder-label">User flow 3</div>
+      </div>
+      <div class="image-placeholder" style="min-height: 180px;">
+        <div class="image-placeholder-icon">🔀</div>
+        <div class="image-placeholder-label">User flow 4</div>
+      </div>
+    </div>
+    <!-- Uncomment and replace with actual images:
+    <div class="image-grid" style="margin-top: 2rem;">
+      <div class="image-frame"><img src="FLOW_1_URL" alt="User flow 1" /></div>
+      <div class="image-frame"><img src="FLOW_2_URL" alt="User flow 2" /></div>
+      <div class="image-frame"><img src="FLOW_3_URL" alt="User flow 3" /></div>
+    </div>
+    -->
+  </section>
+
+  <!-- PM360 USABILITY TESTING -->
+  <section class="section" id="pm360-testing">
+    <div class="block-label">Usability testing</div>
+    <div class="block-title">Validating with internal EasyPark users</div>
+    <p class="block-body" style="margin-bottom: 2rem;">Usability testing sessions were conducted with internal EasyPark users — the actual operators who would use PM360 daily. Three rounds of testing were performed, with iterative design changes applied between each round.</p>
+
+    <div class="content-block">
+      <div class="block-label">Why internal users specifically</div>
+      <div class="finding-list">
+        <div class="finding-item">
+          <span class="finding-marker">validation</span>
+          <span class="finding-text"><strong>Flow validation:</strong> Confirmed that redesigned flows matched users' existing mental models and habits, rather than forcing them to relearn familiar operations.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">insight</span>
+          <span class="finding-text"><strong>Pain point identification:</strong> Observed specific friction moments that weren't surfaced in stakeholder interviews — real-time task failures revealed hidden UX debt.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">feedback</span>
+          <span class="finding-text"><strong>Feature reaction:</strong> Internal users provided candid reactions to new features and interaction patterns. Their feedback informed priority adjustments before development.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">training</span>
+          <span class="finding-text"><strong>Onboarding insights:</strong> Sessions revealed which modules required additional guidance or improved empty states to support new team members.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Results — round 1</div>
+      <div class="score-block">
+        <div class="score-circle">
+          <div class="score-number">84</div>
+          <div class="score-max">/100</div>
+        </div>
+        <div class="score-detail">
+          <div class="score-title">SUS Score — initial testing</div>
+          <p>A score of 84/100 indicates strong overall usability. Two additional testing rounds followed to address identified friction points, continuing the iterative design process.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+        <div class="image-placeholder" style="min-height: 160px;">
+          <div class="image-placeholder-icon">📊</div>
+          <div class="image-placeholder-label">Testing result visual 1</div>
+        </div>
+        <div class="image-placeholder" style="min-height: 160px;">
+          <div class="image-placeholder-icon">📊</div>
+          <div class="image-placeholder-label">Testing result visual 2</div>
+        </div>
+        <div class="image-placeholder" style="min-height: 160px;">
+          <div class="image-placeholder-icon">📊</div>
+          <div class="image-placeholder-label">Testing result visual 3</div>
+        </div>
+        <div class="image-placeholder" style="min-height: 160px;">
+          <div class="image-placeholder-icon">📊</div>
+          <div class="image-placeholder-label">Testing result visual 4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Next steps from testing</div>
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">→</div>
+          <div class="process-content">
+            <strong>Identify areas of strength and weakness</strong>
+            <p>Analyzed feedback across navigation, task completion, instruction clarity, and accessibility to target the highest-impact changes first.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">→</div>
+          <div class="process-content">
+            <strong>Prioritize improvements</strong>
+            <p>Ranked identified issues by user impact. Focused on high-frequency admin tasks where friction had the greatest compounding effect on productivity.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">→</div>
+          <div class="process-content">
+            <strong>Iterative design rounds 2 and 3</strong>
+            <p>Applied changes, retested, and validated that adjustments resolved the identified issues without introducing new friction elsewhere in the system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PM360 FINAL DESIGNS -->
+  <section class="section" id="pm360-designs">
+    <div class="block-label">Final designs</div>
+    <div class="block-title">A modern, intuitive admin portal for internal operations</div>
+    <p class="block-body" style="margin-bottom: 2rem;">The final PM360 features clear navigation, efficient task management, and a consistent visual language built on a shared core UI library developed in collaboration with the design team.</p>
+
+    <div class="content-block">
+      <div class="block-label">Core UI library</div>
+      <p class="block-body">Built in collaboration with the design team to ensure consistency, efficiency, and scalability. Standardized components eliminate design inconsistency across modules and speed up developer implementation significantly.</p>
+      <div class="image-placeholder">
+        <div class="image-placeholder-icon">🎨</div>
+        <div class="image-placeholder-label">Core UI library — component overview</div>
+      </div>
+    </div>
+
+    <!-- Final design screens -->
+    <div class="content-block">
+      <div class="block-label">Screens — final iteration</div>
+      <div class="image-placeholder" style="min-height: 320px;">
+        <div class="image-placeholder-icon">🖥</div>
+        <div class="image-placeholder-label">Final design — PM360 admin portal</div>
+      </div>
+    </div>
+
+    <!-- Implementation process summary -->
+    <div class="content-block">
+      <div class="block-label">Implementation process</div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-value">3<span>×</span></div>
+          <div class="stat-label">Usability testing rounds</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">84<span>/100</span></div>
+          <div class="stat-label">SUS Score achieved</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">UAT</div>
+          <div class="stat-label">Internal users validated</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">Live</div>
+          <div class="stat-label">Deployed to production</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDY 02 — PARTNERHUB (NDA)
+  ══════════════════════════════════════════════ -->
+
+  <section class="section" id="partnerhub-overview">
+    <div class="project-header">
+      <div class="project-number">02</div>
+      <div class="project-title-block">
+        <div class="project-label">B2B SaaS Platform · Fintech · Latin America</div>
+        <h2 class="project-title">PartnerHub —<br>Partner Relationship Management</h2>
+        <p class="project-subtitle">Designing the end-to-end UX of a PRM SaaS platform for a fintech operating across Latin America — centralizing partner onboarding, performance tracking, commissions, and resource management in one place.</p>
+        <div class="meta-row">
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Lead UX Designer & Product Strategist</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Scope</span>
+            <span class="meta-value">Discovery → V1 launch</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">B2B SaaS · PRM · Multi-country</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-value"><span class="sidebar-tag tag-nda">NDA</span> Details shared on request</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nda-banner">
+      <span class="nda-banner-icon">🔒</span>
+      This project is under NDA. The following describes context, process, and outcomes at a level appropriate for confidential disclosure.
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Context</div>
+      <div class="block-title">Replacing spreadsheets with a platform</div>
+      <p class="block-body">A Latin American fintech operating across multiple countries depended on brokers, commercial agents, and strategic partners to generate a significant portion of its sales. The problem: every team managed partner data differently — email threads, shared spreadsheets, and internal tools that didn't talk to each other. There was no single source of truth for partner status, certifications, contracts, commissions, or open commercial opportunities.</p>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">The four problems</div>
+      <div class="card-grid">
+        <div class="card">
+          <div style="font-family: var(--mono); font-size: 11px; color: #8A6010; margin-bottom: 0.5rem;">Problem 01</div>
+          <div class="card-title">Slow, opaque onboarding</div>
+          <div class="card-body">Activating a new partner required multiple email chains across Sales, Operations, Compliance, and the partner. Partners had zero visibility into where they stood in the process.</div>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--mono); font-size: 11px; color: #8A6010; margin-bottom: 0.5rem;">Problem 02</div>
+          <div class="card-title">Dispersed information</div>
+          <div class="card-body">No single source of truth for partner status, certifications, contracts, commissions, or open opportunities. Each team kept their own copy.</div>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--mono); font-size: 11px; color: #8A6010; margin-bottom: 0.5rem;">Problem 03</div>
+          <div class="card-title">Low resource adoption</div>
+          <div class="card-body">Training materials, marketing assets, and product documentation were scattered across platforms. Partners rarely found what they needed without asking for help.</div>
+        </div>
+        <div class="card">
+          <div style="font-family: var(--mono); font-size: 11px; color: #8A6010; margin-bottom: 0.5rem;">Problem 04</div>
+          <div class="card-title">No performance visibility</div>
+          <div class="card-body">Commercial leaders couldn't answer basic questions: which partners generate the most revenue? Who has open opportunities? Who needs certification renewal?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Strategic objectives</div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-value" style="font-size: 16px; color: var(--accent);">21 → 7</div>
+          <div class="stat-label">Days to activate a partner</div>
+          <div class="stat-sub">Target reduction</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value" style="font-size: 16px; color: var(--accent);">↓ Manual</div>
+          <div class="stat-label">Admin tasks for internal teams</div>
+          <div class="stat-sub">Productivity goal</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value" style="font-size: 16px; color: var(--accent);">↑ Revenue</div>
+          <div class="stat-label">From certified partner channel</div>
+          <div class="stat-sub">Business growth goal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERHUB DISCOVERY -->
+  <section class="section" id="partnerhub-discovery">
+    <div class="block-label">Research & discovery</div>
+    <div class="block-title">20 interviews, 3 workshops, full process audit</div>
+
+    <div class="content-block">
+      <div class="block-label">Research conducted</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 1rem;">
+        <div class="stat-cell" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Interviews — active partners</div>
+        </div>
+        <div class="stat-cell" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Interviews — internal teams</div>
+        </div>
+        <div class="stat-cell" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Alignment workshops</div>
+        </div>
+        <div class="stat-cell" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+          <div class="stat-value">Full</div>
+          <div class="stat-label">Operational process audit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Key findings</div>
+      <div class="finding-list">
+        <div class="finding-item">
+          <span class="finding-marker">partners</span>
+          <span class="finding-text"><strong>Partners wanted autonomy:</strong> The majority didn't want to depend on account executives to access basic information. They wanted self-service for status, documents, and commissions.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">internal</span>
+          <span class="finding-text"><strong>Internal teams were overwhelmed with repetitive requests:</strong> Most support tickets were for onboarding status, commission payments, material access, and document updates — all solvable through better self-service UX.</span>
+        </div>
+        <div class="finding-item">
+          <span class="finding-marker">metrics</span>
+          <span class="finding-text"><strong>No shared definition of partner performance:</strong> Each area measured differently. Finance tracked commissions, sales tracked pipeline, operations tracked certifications — no unified view existed.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-quote">
+      <p>"Allow any partner to onboard, train, sell, and monitor their performance from a single place." — product vision defined during discovery</p>
+    </div>
+  </section>
+
+  <!-- PARTNERHUB SOLUTION -->
+  <section class="section" id="partnerhub-solution">
+    <div class="block-label">Solution design</div>
+    <div class="block-title">Five interconnected pillars</div>
+    <p class="block-body" style="margin-bottom: 2rem;">The platform was structured around five functional areas, each designed to serve both partner-facing and admin-facing needs within the same system.</p>
+
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">1</div>
+        <div class="process-content">
+          <strong>Onboarding workspace</strong>
+          <p>A progress-based guided experience covering registration, document upload, automatic validation, e-signature, and an activation checklist. Partners could see exactly what was missing and why — reducing back-and-forth with operations teams entirely.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <div class="process-content">
+          <strong>Partner dashboard</strong>
+          <p>A personalized view per partner with certification status, generated sales, open opportunity pipeline, accumulated commissions, and pending activities. Prioritized actionable indicators over complex historical data.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <div class="process-content">
+          <strong>Resource center</strong>
+          <p>A centralized library of commercial materials, presentations, brand assets, training videos, and product guides. Replaced a fragmented multi-platform setup and significantly reduced support dependency.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">4</div>
+        <div class="process-content">
+          <strong>Performance & incentives</strong>
+          <p>Partner rankings, quarterly targets, bonuses, and certification levels — designed to transform complex metrics into clear, motivating indicators. The system made performance visible and competitive without being opaque.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">5</div>
+        <div class="process-content">
+          <strong>Admin console</strong>
+          <p>Internal-facing module for user and document management, commission configuration, partner segmentation, and executive reporting. Designed for operations and commercial leadership teams.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block" style="margin-top: 2.5rem;">
+      <div class="block-label">Design system built for this product</div>
+      <p class="block-body">Constructed a reusable component library covering data tables, filters, progress trackers, KPI cards, workflow builders, and notification patterns. Reduced design and development time by approximately 40% across modules.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 1rem;">
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">Data tables</div>
+        </div>
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">Filters</div>
+        </div>
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">Progress trackers</div>
+        </div>
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">KPI cards</div>
+        </div>
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">Workflow builders</div>
+        </div>
+        <div class="card" style="padding: 0.75rem; text-align: center;">
+          <div class="card-title" style="font-size: 12px;">Notifications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERHUB RESULTS -->
+  <section class="section" id="partnerhub-results">
+    <div class="block-label">Validation & results</div>
+    <div class="block-title">Tested with 25 users. Measured over 6 months.</div>
+
+    <div class="content-block">
+      <div class="block-label">Usability testing</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem;">
+        <div class="score-block" style="max-width: 100%;">
+          <div class="score-circle">
+            <div class="score-number">95</div>
+            <div class="score-max">%</div>
+          </div>
+          <div class="score-detail">
+            <div class="score-title">Task completion</div>
+            <p>95% of partners completed the onboarding flow without any assistance during validation sessions.</p>
+          </div>
+        </div>
+        <div class="score-block" style="max-width: 100%;">
+          <div class="score-circle" style="border-color: #0A6E50;">
+            <div class="score-number" style="font-size: 16px;">4 min</div>
+            <div class="score-max">→ 30s</div>
+          </div>
+          <div class="score-detail">
+            <div class="score-title">Time to find information</div>
+            <p>Average time to locate relevant information dropped from 4 minutes to under 30 seconds.</p>
+          </div>
+        </div>
+      </div>
+      <div class="score-block" style="margin-top: 12px; max-width: 340px;">
+        <div class="score-circle">
+          <div class="score-number">84</div>
+          <div class="score-max">/100</div>
+        </div>
+        <div class="score-detail">
+          <div class="score-title">SUS Score</div>
+          <p>Validated with 15 partners and 10 internal users across the full platform scope.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Business impact — 6 months post-launch</div>
+      <div class="results-grid">
+        <div class="result-cell">
+          <div class="result-category">Operational</div>
+          <div class="result-item">
+            <div class="result-value">21 → 5</div>
+            <div class="result-desc">Days to activate a partner</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">68%</div>
+            <div class="result-desc">Fewer onboarding support requests</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">54%</div>
+            <div class="result-desc">Fewer internal-partner emails</div>
+          </div>
+        </div>
+        <div class="result-cell">
+          <div class="result-category">Business</div>
+          <div class="result-item">
+            <div class="result-value">+35%</div>
+            <div class="result-desc">Active partners monthly</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">+22%</div>
+            <div class="result-desc">Opportunities created by partners</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">+18%</div>
+            <div class="result-desc">Revenue attributed to partner channel</div>
+          </div>
+        </div>
+        <div class="result-cell">
+          <div class="result-category">Experience</div>
+          <div class="result-item">
+            <div class="result-value">+42</div>
+            <div class="result-desc">Partner NPS</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">87%</div>
+            <div class="result-desc">Platform adoption in first 90 days</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">84/100</div>
+            <div class="result-desc">SUS satisfaction score</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-quote">
+      <p>Beyond designing screens, the challenge was redefining how the organization collaborated with its partner ecosystem — transforming a fragmented, manual process into a scalable, measurable, growth-oriented experience.</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDY 03 — KOVA
+  ══════════════════════════════════════════════ -->
+
+  <section class="section section-last" id="kova">
+    <div class="project-header">
+      <div class="project-number">03</div>
+      <div class="project-title-block">
+        <div class="project-label">AI-Driven Experiment · Figma MCP + Claude Code</div>
+        <h2 class="project-title">KOVA NIMBVX PRO —<br>Adaptive PDP System</h2>
+        <p class="project-subtitle">An experimental eCommerce product page that adapts its layout in real time based on user behavioral profiling — built using Figma MCP integration, Claude Code, and Node.js. The analytics dashboard below shows the performance data from the adaptive system.</p>
+        <div class="meta-row">
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Designer · Developer · Systems architect</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Stack</span>
+            <span class="meta-value">Figma MCP · Claude Code · Node.js · HTML/CSS</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">
+              <span class="kova-tag">Experimental</span>
+              <span class="kova-tag">AI-augmented workflow</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">What this demonstrates</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">AI-augmented design workflow</div>
+          <div class="card-body">The entire product — from Figma components to production HTML — was built using Claude as a design partner and development copilot, with Figma MCP enabling direct integration.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Behavioral personalization</div>
+          <div class="card-body">A 3-question modal classifies users as Expert, Explorer, or Price-Seeker — each receiving a tailored layout optimized for their decision-making pattern.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Design systems thinking</div>
+          <div class="card-body">A multibrand design system connected to Figma via MCP, with zero hardcoded hex values and full variable binding — built for scalability from day one.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">System performance — live dashboard</div>
+      <p class="block-body" style="margin-bottom: 1.25rem;">The dashboard below shows real analytics from the adaptive layout system across 27,450 sessions. The adaptive approach delivered an average 82% conversion rate lift versus a single default PDP running concurrently.</p>
+      <div class="kova-embed">
+        <iframe
+          src="https://graphicalmike-ops.github.io/Kova-Nimbvx/dashboard.html"
+          title="KOVA NIMBVX PRO — Adaptive PDP Analytics Dashboard"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Key results</div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-value">+82<span>%</span></div>
+          <div class="stat-label">Avg A/B lift vs. default PDP</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">84<span>%</span></div>
+          <div class="stat-label">Persona match accuracy</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">4.4<span>%</span></div>
+          <div class="stat-label">Avg conversion rate (vs. 2.4% baseline)</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Adaptive layouts — Expert, Explorer, Price-Seeker</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href') === '#' + entry.target.id) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
